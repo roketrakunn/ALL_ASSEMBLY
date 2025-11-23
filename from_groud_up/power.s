@@ -9,16 +9,16 @@
 _start: 
    
     pushl $3 #push first second(base) argument
-    pushl $2 #push first second(power) argument
+    pushl $0 #push first second(power) argument
+
 
     call power #to compute 3^2
-
     addl $8 , %esp #move the stack pointer back into place.
 
     pushl %eax #save the first res ( a^b) before calling power again
 
     pushl $5 #push the first(second_ base) argument
-    pushl $2 #push the second(second_power) argument
+    pushl $0 #push the second(second_power) argument
 
     call power #to compute 5^2
 
@@ -52,7 +52,16 @@ power:
     movl 8(%ebp), %ebx  #move the first argument to %ebx
     movl 12(%ebp), %ecx #move the second argument to %ecx
 
+    cmpl $0 , %ecx
+    je handle_zero 
+    
     movl %ebx, -4(%ebp) #store the curr resulsts.
+    jmp power_loop_ start
+
+
+handle_zero: 
+    movl $1, %eax
+    jmp end_power
 
 power_loop_start: 
     
@@ -66,7 +75,6 @@ power_loop_start:
     decl %ecx           #decrement the power
 
     jmp power_loop_start#next power computation.
-
 
 end_power: 
     movl -4(%ebp), %eax #store returned val into %eax
