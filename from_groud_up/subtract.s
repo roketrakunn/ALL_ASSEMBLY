@@ -35,8 +35,8 @@ subtract_two_numbers:
 
     movl %esp , %ebp        #adjust the stack pointer
 
-    movl 8(%ebp) , %eax     #Got a (the fist parameter)
     movl 12(%ebp) , %ebx    #Got b (the second parameter)
+    movl 8(%ebp) , %eax     #Got a (the fist parameter)
 
     subl %ebx , %eax        #will migrate results later to %ebx
 
