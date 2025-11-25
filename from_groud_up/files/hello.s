@@ -24,7 +24,7 @@ _start:
     movl $4 , %eax
     movl %edi , %ebx        #fd
     movl $message , %ecx     #buffer
-    movl $8 , %edx          #size 
+    movl $12 , %edx          #size 
     int $0x80   
 
     ###close(fd)
