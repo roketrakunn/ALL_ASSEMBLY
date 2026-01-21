@@ -17,6 +17,5 @@ int main(int argc, char *argv[]) {
     
     // Print as decimal (converting back to host order)
     printf("%u\n", ntohs(network_value));
-    
     return 0;
 }
